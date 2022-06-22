@@ -1,3 +1,64 @@
+// Layout
+import Layout from "../layout/Layout";
+
 export default function Home() {
-  return <h1 className="text-red-700">Next.js</h1>;
+  return (
+    <Layout>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+      <h1>Inicio</h1>
+    </Layout>
+  );
 }
