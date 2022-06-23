@@ -1,9 +1,31 @@
+import Modal from "react-modal";
 import Head from "next/head";
 
+// Custom hook
+import useQuiosco from "../hooks/useQuisco";
 // Components
 import Sidebar from "../components/Sidebar";
+import ModalProducto from "../components/ModalProducto";
+
+// Styles Modal
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%,-50%)",
+  },
+};
+
+// Se le envia el id principal del html
+Modal.setAppElement("#__next");
 
 export default function Layout({ children, pagina }) {
+  // Accediendo a los datos del contexto Quiosco a traves del custom hook useQuioso()
+  const { modal, handleChangeModal } = useQuiosco();
+
   return (
     <>
       {/* Head dinamico para mejorar SEO */}
@@ -25,6 +47,15 @@ export default function Layout({ children, pagina }) {
           </div>
         </main>
       </div>
+
+      {
+        // Modal
+        modal && (
+          <Modal isOpen={modal} style={customStyles}>
+            <ModalProducto />
+          </Modal>
+        )
+      }
     </>
   );
 }

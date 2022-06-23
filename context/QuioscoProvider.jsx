@@ -10,6 +10,10 @@ const QuioscoProvider = ({ children }) => {
   const [categorias, setCategorias] = useState([]);
   // State para manejar la categoria actual
   const [categoriaActual, setCategoriaActual] = useState({});
+  // State para manejar el producto actual
+  const [producto, setProducto] = useState({});
+  // State para manejar el modal
+  const [modal, setModal] = useState(false);
 
   // Los useEffect se ejecutan en orden
 
@@ -39,9 +43,27 @@ const QuioscoProvider = ({ children }) => {
     setCategoriaActual(categoria[0]);
   };
 
+  // Funcion para actualizar el state de producto
+  const handleClickProducto = (producto) => {
+    setProducto(producto);
+  };
+
+  // Funcion para actualizar el state del modal
+  const handleChangeModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <QuioscoContext.Provider
-      value={{ categorias, handleClickCategoria, categoriaActual }}
+      value={{
+        categorias,
+        handleClickCategoria,
+        categoriaActual,
+        producto,
+        handleClickProducto,
+        modal,
+        handleChangeModal,
+      }}
     >
       {children}
     </QuioscoContext.Provider>
