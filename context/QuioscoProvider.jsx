@@ -14,6 +14,8 @@ const QuioscoProvider = ({ children }) => {
   const [producto, setProducto] = useState({});
   // State para manejar el modal
   const [modal, setModal] = useState(false);
+  // State para manejar el pedido
+  const [pedido, setPedido] = useState([]);
 
   // Los useEffect se ejecutan en orden
 
@@ -53,6 +55,22 @@ const QuioscoProvider = ({ children }) => {
     setModal(!modal);
   };
 
+  // Funcion para actualizar el state de pedido
+  // Sacamos copia de producto sin categoriaId y imagen
+  const handleAgregarPedido = ({ categoriaId, imagen, ...producto }) => {
+    // Comprobar si el producto agregado ya esta en el state pedido
+    if (pedido.some((productoState) => productoState.id === producto.id)) {
+      // Actualizamos la cantidad
+      const pedidoActualizado = pedido.map((productoState) =>
+        productoState.id === producto.id ? producto : productoState
+      );
+      setPedido(pedidoActualizado);
+    } else {
+      // Como no existe, lo agregamos al state
+      setPedido([...pedido, producto]);
+    }
+  };
+
   return (
     <QuioscoContext.Provider
       value={{
@@ -63,6 +81,8 @@ const QuioscoProvider = ({ children }) => {
         handleClickProducto,
         modal,
         handleChangeModal,
+        handleAgregarPedido,
+        pedido,
       }}
     >
       {children}
