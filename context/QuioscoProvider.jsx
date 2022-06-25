@@ -19,6 +19,8 @@ const QuioscoProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
   // State para manejar el pedido
   const [pedido, setPedido] = useState([]);
+  // State para manejar el paso
+  const [paso, setPaso] = useState(1);
 
   // Los useEffect se ejecutan en orden
 
@@ -90,6 +92,11 @@ const QuioscoProvider = ({ children }) => {
     setModal(false);
   };
 
+  // Funcion para actualizar el state de paso
+  const handleChangePaso = (paso) => {
+    setPaso(paso);
+  };
+
   return (
     <QuioscoContext.Provider
       value={{
@@ -102,6 +109,8 @@ const QuioscoProvider = ({ children }) => {
         handleChangeModal,
         handleAgregarPedido,
         pedido,
+        paso,
+        handleChangePaso,
       }}
     >
       {children}
