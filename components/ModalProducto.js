@@ -125,9 +125,7 @@ const ModalProducto = () => {
         <button
           type="button"
           className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
-          onClick={() => {
-            handleAgregarPedido({ ...producto, cantidad }), handleChangeModal();
-          }}
+          onClick={() => handleAgregarPedido({ ...producto, cantidad })}
         >
           {edicion ? "Guardar Cambios" : "Añadir al Pedido"}
         </button>

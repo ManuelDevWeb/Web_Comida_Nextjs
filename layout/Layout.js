@@ -1,11 +1,15 @@
 import Modal from "react-modal";
 import Head from "next/head";
+// React Toastify (Permite registrar el toast donde se va a mostrar)
+import { ToastContainer } from "react-toastify";
 
 // Custom hook
 import useQuiosco from "../hooks/useQuisco";
 // Components
 import Sidebar from "../components/Sidebar";
 import ModalProducto from "../components/ModalProducto";
+
+import "react-toastify/dist/ReactToastify.css";
 
 // Styles Modal
 const customStyles = {
@@ -56,6 +60,8 @@ export default function Layout({ children, pagina }) {
           </Modal>
         )
       }
+
+      <ToastContainer />
     </>
   );
 }

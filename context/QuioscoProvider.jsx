@@ -1,5 +1,8 @@
 import { useState, useEffect, createContext } from "react";
+// Axios
 import axios from "axios";
+// React Toastify (toast permite llamar el toast)
+import { toast } from "react-toastify";
 
 // Creando el contexto (Permite acceder al contexto)
 const QuioscoContext = createContext();
@@ -65,10 +68,26 @@ const QuioscoProvider = ({ children }) => {
         productoState.id === producto.id ? producto : productoState
       );
       setPedido(pedidoActualizado);
+
+      // Llamando la alerta de toast
+      toast.success("Guardado correctamente");
     } else {
       // Como no existe, lo agregamos al state
       setPedido([...pedido, producto]);
+
+      // Llamando la alerta toast
+      toast.success("Agregado al pedido", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
+
+    setModal(false);
   };
 
   return (
