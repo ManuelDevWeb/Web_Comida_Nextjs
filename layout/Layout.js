@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import Head from "next/head";
-// React Toastify (Permite registrar el toast donde se va a mostrar)
+// React Toastify Alertas (Permite registrar el toast donde se va a mostrar)
 import { ToastContainer } from "react-toastify";
 
 // Custom hook
