@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { useRouter } from "next/router";
 // Axios
 import axios from "axios";
 // React Toastify (toast permite llamar el toast)
@@ -21,6 +22,12 @@ const QuioscoProvider = ({ children }) => {
   const [pedido, setPedido] = useState([]);
   // State para manejar el paso
   // const [paso, setPaso] = useState(1);
+  // State para manejar el nombre
+  const [nombre, setNombre] = useState("");
+  // State para manejar el total a pagar
+  const [total, setTotal] = useState(0);
+
+  const router = useRouter();
 
   // Los useEffect se ejecutan en orden
 
@@ -29,9 +36,20 @@ const QuioscoProvider = ({ children }) => {
     obtenerCategorias();
   }, []);
 
+  // UseEffect que se ejecuta cada que cambia las categorias
   useEffect(() => {
     setCategoriaActual(categorias[0]);
   }, [categorias]);
+
+  // UseEffect que se ejecuta cada que cambia el pedido
+  useEffect(() => {
+    // Calculando total a pagar
+    const nuevoTotal = pedido.reduce(
+      (total, producto) => producto.precio * producto.cantidad + total,
+      0
+    );
+    setTotal(nuevoTotal);
+  }, [pedido]);
 
   // Funcion para consultar las categorias de la API
   const obtenerCategorias = async () => {
@@ -46,8 +64,9 @@ const QuioscoProvider = ({ children }) => {
     // Filtrando la categoria que coincida con la que viene desde la accion
     const categoria = categorias.filter((cat) => cat.id === id);
     // Actualizamos el state de categoriaActual
-    // console.log(categoria)
     setCategoriaActual(categoria[0]);
+    // Redireccionamos
+    router.push("/");
   };
 
   // Funcion para actualizar el state de producto
@@ -97,6 +116,28 @@ const QuioscoProvider = ({ children }) => {
   //   setPaso(paso);
   // };
 
+  // Funcion para editar cantidad
+  const handleEditarCantidades = (id) => {
+    // Filtrando el producto que coincida con el id
+    const productoActualizar = pedido.filter((producto) => producto.id === id);
+    setProducto(productoActualizar[0]);
+    setModal(!modal);
+  };
+
+  // Funcion para eliminar producto del pedido
+  const handleEliminarProducto = (id) => {
+    // Filtrando el producto que coincida con el id
+    const pedidoActualizado = pedido.filter((producto) => producto.id !== id);
+    setPedido(pedidoActualizado);
+  };
+
+  // Funcion para enviar la orden (Asincrona puesto interacciona con la base de datos)
+  const colocarOrden = async (e) => {
+    e.preventDefault();
+    //
+    console.log("Enviando", total);
+  };
+
   return (
     <QuioscoContext.Provider
       value={{
@@ -111,6 +152,12 @@ const QuioscoProvider = ({ children }) => {
         pedido,
         // paso,
         // handleChangePaso,
+        handleEditarCantidades,
+        handleEliminarProducto,
+        nombre,
+        setNombre,
+        colocarOrden,
+        total,
       }}
     >
       {children}

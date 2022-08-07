@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Layout pagina={`Menu ${categoriaActual?.nombre}`}>
       <h1 className="text-4xl font-black">{categoriaActual?.nombre}</h1>
-      <p className="text-2xl my-5">
+      <p className="text-2xl my-10">
         Elige y personaliza tu pedido a continuacion
       </p>
 
