@@ -11,7 +11,7 @@ const pasos = [
 
 const Pasos = () => {
   // Accediendo a los datos del contexto Quiosco a traves del custom hook useQuiosco()
-  const { handleChangePaso, paso } = useQuiosco();
+  // const { handleChangePaso, paso } = useQuiosco();
 
   // Instanciando router
   const router = useRouter();
@@ -19,9 +19,17 @@ const Pasos = () => {
   const calcularProgreso = () => {
     let valorPorcentaje;
 
-    if (paso === 1) {
+    // if (paso === 1) {
+    //   valorPorcentaje = 2.7;
+    // } else if (paso == 2) {
+    //   valorPorcentaje = 47.5;
+    // } else {
+    //   valorPorcentaje = 100;
+    // }
+
+    if (router.pathname === "/") {
       valorPorcentaje = 2.7;
-    } else if (paso == 2) {
+    } else if (router.pathname == "/resumen") {
       valorPorcentaje = 47.5;
     } else {
       valorPorcentaje = 100;
@@ -42,7 +50,8 @@ const Pasos = () => {
               onClick={
                 // Redirecciona al dar click en el button
                 () => {
-                  router.push(paso.url), handleChangePaso(paso.paso);
+                  router.push(paso.url);
+                  // handleChangePaso(paso.paso);
                 }
               }
             >
