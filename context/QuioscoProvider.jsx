@@ -134,8 +134,40 @@ const QuioscoProvider = ({ children }) => {
   // Funcion para enviar la orden (Asincrona puesto interacciona con la base de datos)
   const colocarOrden = async (e) => {
     e.preventDefault();
-    //
-    console.log("Enviando", total);
+
+    // Conexion hacia el backend para agregar la orden a la DB
+    try {
+      // Hacemos peticion al metodo post y le enviamos los datos
+      // Las llaves que enviamos deben corresponder al esquema de la DB
+      await axios.post("/api/ordenes", {
+        pedido,
+        nombre,
+        total,
+        fecha: Date.now().toString(),
+      });
+
+      // Resetear la APP (Volver los states a su estado inicial, mostrar alerta y redireccionar)
+      // Actualizamos State categoria actual
+      setCategoriaActual(categorias[0]);
+      // Actualizamos State pedido
+      setPedido([]);
+      // Actualizamos State nombre
+      setNombre("");
+      // Actualizamos State total
+      setTotal(0);
+
+      // Notificacion de toast
+      toast.success("Pedido Realizado Correctamente");
+
+      // Redireccionamos a la pagina principal
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // console.log("Enviando", total);
   };
 
   return (
