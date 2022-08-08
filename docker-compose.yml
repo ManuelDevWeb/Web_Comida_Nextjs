@@ -20,3 +20,23 @@ services:
       - PMA_HOST=mysql
     ports:
       - 8080:80
+
+  mysqlProd:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=railway
+      - MYSQL_USER=
+      - MYSQL_ROOT_PASSWORD=iXHlPwqfheqD39tWC704
+      - MYSQL_PORT=7788
+    ports:
+      - "7788:7788"
+    volumes:
+      - ./mysql_dataProd:/var/lib/mysql
+
+  phpmyadminProd:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=iXHlPwqfheqD39tWC704
+      - PMA_HOST=containers-us-west-38.railway.app
+    ports:
+      - 8081:80
