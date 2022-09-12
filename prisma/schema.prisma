@@ -17,6 +17,7 @@ model Producto{
   precio Float
   imagen String
   // Un producto solo puede tener una categoria (Producto<----Categoria)
+  // El campo categoriaId hace referencia a id de Categoria
   categoriaId Int
   categoria Categoria @relation(fields: [categoriaId], references: [id])
 }

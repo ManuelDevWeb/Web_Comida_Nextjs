@@ -37,6 +37,6 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       - MYSQL_ROOT_PASSWORD=iXHlPwqfheqD39tWC704
-      - PMA_HOST=containers-us-west-38.railway.app
+      - PMA_HOST=mysqlProd
     ports:
       - 8081:80
